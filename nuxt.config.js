@@ -45,6 +45,7 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    '@nuxtjs/proxy'
   ],
   /*
   ** Axios module configuration
@@ -56,6 +57,12 @@ export default {
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module
   */
+  proxy: {
+    '/.netlify': {
+      target: 'http://localhost:9000',
+      pathRewrite: {'^/.netlify/functions': ''},
+    },
+  },
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
