@@ -1,13 +1,16 @@
 <template lang="pug">
-  v-card
-    h2 2. Hello, {name}
-    v-text-field( v-model="form.name" placeholder="Your name")
-    v-btn( @click="helloName(form.name)" color="primary") 👋 Say hello
-    p Response: {{ response }}
-    p(v-if="error" style="color:red;")
-      strong Error {{ error.status }}
-      br 
-      | {{ error.data }}
+  v-container
+    template(v-if='open')
+      h2 Hello, {name}
+      v-text-field( v-model="form.name" placeholder="Your name")
+      v-btn.ma-2( @click="helloName(form.name)" color="primary") 👋 Say hello
+      v-btn.ma-2( @click="open=false") tutup
+      p Response: {{ response }}
+      p(v-if="error" style="color:red;")
+        strong Error {{ error.status }}
+        br 
+        | {{ error.data }}
+    v-btn(v-else @click='open=true') say hello
 </template>
 
 <script>
@@ -15,6 +18,7 @@ export default {
   name: 'Example2',
   data() {
     return {
+      open: false,
       form: {
         name: ''
       },
