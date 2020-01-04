@@ -3,15 +3,13 @@ const puppeteer = require('puppeteer-core');
 
 exports.handler = async (event, context) => {
 
-    let chromium = null
-
     let opts = {
-        executablePath: process.env.CHROME_PATH
+        executablePath: process.env.CHROME_PATH || ''
     }
 
 
     if(process.env.NODE_ENV === 'production') {
-        chromium = require('chrome-aws-lambda');
+        const chromium = require('chrome-aws-lambda');
         opts = {
             args: chromium.args,
             defaultViewport: chromium.defaultViewport,
