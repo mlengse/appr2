@@ -1,11 +1,24 @@
-const puppeteer = require('puppeteer');
-
-// if(!puppeteer) {
-//     const chromium = require('chrome-aws-lambda');
-// }
-
+require('dotenv').config()
+const puppeteer = require('puppeteer-core');
 
 exports.handler = async (event, context) => {
+
+    let chromium = null
+
+    let opts = {
+        executablePath: process.env.CHROME_PATH
+    }
+
+
+    if(process.env.NODE_ENV === 'production') {
+        chromium = require('chrome-aws-lambda');
+        opts = {
+            args: chromium.args,
+            defaultViewport: chromium.defaultViewport,
+            executablePath: await chromium.executablePath,
+            headless: chromium.headless,
+        }
+    }
 
     const pageToScreenshot = JSON.parse(event.body).pageToScreenshot;
 
@@ -14,13 +27,7 @@ exports.handler = async (event, context) => {
         body: JSON.stringify({ message: 'Page URL not defined' })
     }
 
-    const browser = await puppeteer.launch()
-    //  : await chromium.puppeteer.launch({
-    //     args: chromium.args,
-    //     defaultViewport: chromium.defaultViewport,
-    //     executablePath: await chromium.executablePath,
-    //     headless: chromium.headless,
-    // });
+    const browser = await puppeteer.launch(opts)
     
     const page = await browser.newPage();
 
