@@ -9,7 +9,7 @@
     "nuxt": "nuxt",
     "dev": "npm-run-all --parallel nuxt functions:serve",
     "start": "nuxt start",
-    "generate": "NODE_ENV=development nuxt generate && npm run functions:build",
+    "generate": "NODE_ENV=production nuxt generate && npm run functions:build",
     "functions:serve": "netlify-lambda serve functions",
     "functions:build": "netlify-lambda build functions"
   },
