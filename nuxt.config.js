@@ -1,3 +1,4 @@
+require('dotenv').config()
 import colors from 'vuetify/es5/util/colors'
 
 export default {
@@ -24,6 +25,9 @@ export default {
     '@nuxtjs/dotenv',
     '@nuxtjs/proxy'
   ],
+  axios: {
+    baseURL:process.env.BASE_URL || process.env.URL
+  },
   proxy: process.env.NODE_ENV !== 'production' ? {
     '/.netlify': 'http://localhost:9000'
   } : {},
