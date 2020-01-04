@@ -6,6 +6,9 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
+    "postzip": "mv functions/chrome/chrome.zip .functions",
+    "prebuild": "npm run zip","prezip": "rm -rf .functions && mkdir .functions",
+    "zip": "cd functions && npm install && chmod -R 777 node_modules && zip -r ekin.zip *",
     "nuxt": "nuxt",
     "dev": "npm-run-all --parallel nuxt functions:serve",
     "start": "nuxt start",
