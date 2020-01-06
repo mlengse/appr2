@@ -28,6 +28,10 @@ export default {
   axios: {
     baseURL:process.env.BASE_URL || process.env.URL
   },
+	server: {
+		host: '0.0.0.0',
+		port: 3002
+	},
   proxy: process.env.NODE_ENV !== 'production' ? {
     '/.netlify': 'http://localhost:9000'
   } : {},

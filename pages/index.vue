@@ -4,7 +4,6 @@
       v-card
         v-card-text
           template(v-if="show")
-            Example
             Example2
           template(v-else)
             .headline.text-center Welcome
@@ -19,14 +18,12 @@
 </template>
 
 <script>
-import Example from '@/components/Example'
 import Example2 from '@/components/Example2'
 export default {
   data: () =>({
     show: false
   }),
   components: {
-    Example,
     Example2,
   }
 }
