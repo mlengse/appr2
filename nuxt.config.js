@@ -12,6 +12,14 @@ export default {
     '@nuxtjs/vuetify',
 		'@nuxtjs/moment'
   ],
+  env: {
+		apiKey: process.env.apiKey,
+		authDomain: process.env.authDomain,
+		databaseURL: process.env.databaseURL,
+		projectId: process.env.projectId,
+		storageBucket: process.env.storageBucket,
+		messagingSenderId: process.env.messagingSenderId,
+	},
   head: {
     titleTemplate: '%s - ' + process.env.npm_package_name,
     title: process.env.npm_package_name || '',
@@ -24,8 +32,8 @@ export default {
         content: 'width=device-width, initial-scale=1' 
       },
       { 
-        hid: 'description', 
-        name: 'description', 
+        hid: "Aplikasi Bantu Puskesmas Jayengan",
+				name: "Puskesmas Jayengan",
         content: process.env.npm_package_description || '' 
       }
     ],
