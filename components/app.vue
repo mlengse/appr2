@@ -50,10 +50,10 @@ export default {
         return
       }
       try {
-        const res = await this.$axios.$get(
-          `/.netlify/functions/hello-name?name=${name}`
-        )
-        this.response = res
+        // const res = await this.$axios.$get(
+        //   // `/.netlify/functions/hello-name?name=${name}`
+        // )
+        this.response = this.form
         this.error = null
       } catch (e) {
         this.error = e.response

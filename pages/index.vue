@@ -1,19 +1,11 @@
 <template lang="pug">
   v-layout( column justify-center align-center)
     v-flex.text-center( xs12 sm8 md6)
-      Login(v-if="!$store.getters['users/isAuthenticated']")
-      App(v-else)
 </template>
 
 <script>
-import Login from '@/components/login'
-import App from '@/components/app'
 export default {
   data: () =>({
   }),
-  components: {
-    Login,
-    App,
-  }
 }
 </script>
