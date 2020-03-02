@@ -42,6 +42,7 @@ export const actions = {
       store.commit('addDrug', drug)
     }
   },
+
   async fetchVisits(store, bulan ) {
     if(!bulan){
       bulan = this.$moment().format('YYYY-MM')

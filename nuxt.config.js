@@ -68,8 +68,8 @@ export default {
 	],
 
   proxy: process.env.NODE_ENV !== 'production' ? {
-    '/graphiql': 'http://localhost:4000',
-		'/graphql': 'http://localhost:4000',
+    '/graphiql': 'http://localhost:3000',
+		'/graphql': 'http://localhost:3000',
   } : {},
 	server: {
 		host: '0.0.0.0',

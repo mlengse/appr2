@@ -45,6 +45,7 @@ export default {
 			this.loading = false
 		}
 	},
+
 	async beforeCreate() {
 		try {
 			await this.$store.dispatch('obat/fetchDrugs')

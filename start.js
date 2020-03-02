@@ -2,7 +2,8 @@ const exec = require('child_process').exec
 
 console.log(`Starting app for dev`)
 
-const build = exec('npm run build && npm run start', { 
+const build = exec('npm run dev', { 
+// const build = exec('npm run build && npm run start', { 
   stdio: 'inherit', windowsHide: true 
 })
 
