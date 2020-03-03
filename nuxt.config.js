@@ -67,10 +67,10 @@ export default {
 		},
 	],
 
-  proxy: {
+  proxy: process.env.NODE_ENV !== 'production' ? {
     '/graphiql': process.env.BACKEND_URL,
 		'/graphql': process.env.BACKEND_URL,
-  },
+  } : {},
 	server: {
 		host: '0.0.0.0',
 		port: 3002
