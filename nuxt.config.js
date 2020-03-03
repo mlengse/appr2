@@ -67,12 +67,9 @@ export default {
 		},
 	],
 
-  proxy: process.env.NODE_ENV !== 'production' ? {
-    '/graphiql': 'http://localhost:3000',
-		'/graphql': 'http://localhost:3000',
-  } : {
-    '/graphiql': 'https://sn1h3sh0f0px9lax.v1.p.beameio.net',
-    '/graphql': 'https://sn1h3sh0f0px9lax.v1.p.beameio.net'
+  proxy: {
+    '/graphiql': process.env.BACKEND_URL,
+		'/graphql': process.env.BACKEND_URL,
   },
 	server: {
 		host: '0.0.0.0',
