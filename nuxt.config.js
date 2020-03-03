@@ -3,7 +3,7 @@ export default {
   axios: {
     baseURL: process.env.BASE_URL || process.env.URL,
     progress: true,
-		proxy: true
+		proxy: process.env.NODE_ENV !== 'production' ? true : false
   },
   build: {
     extend (config, ctx) {}
