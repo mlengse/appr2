@@ -7,6 +7,8 @@ export const state = () => ({
 export const getters = {
   login:({login}) => login,
   isAuthenticated: ({ user }) => !!user,
+  isPegawai: ({ user }) => !!user.nip,
+  isInternal: ({ user }) => !!user.simpusUser,
   user: ({user}) => user,
   account: ({ account }) => account,
   idToken: ({ user }) => user.stsTokenManager.accessToken 
