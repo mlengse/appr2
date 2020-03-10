@@ -70,6 +70,7 @@ export default {
   proxy: process.env.NODE_ENV !== 'production' ? {
     '/graphiql': process.env.BACKEND_URL,
 		'/graphql': process.env.BACKEND_URL,
+		'/peg': process.env.BACKEND_URL,
   } : {},
 	server: {
 		host: '0.0.0.0',

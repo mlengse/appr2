@@ -15,7 +15,40 @@ v-dialog(v-model="userDialog" width="500" v-cloak)
 			p(v-if='user.displayName') Nama: {{ user.displayName }}
 			p(v-if='user.email') Email: {{ user.email }}
 			p(v-if='user.phoneNumber') Nomor HP: {{ user.phoneNumber }}
-			v-btn(v-if='!isPegawai' small text color='primary') Login Pegawai 
+			v-divider
+			v-card(elevation='10')
+				v-card-subtitle Akun Kepegawaian
+				v-card-text
+					v-form( v-if="!isPegawai" ref="forms" v-model="valid" :lazy-validation="lazy" )
+						v-text-field( 
+							label="NIP" 
+							v-model="form.username"
+							required
+							:rules="[rules.isNaN]"
+							:counter="18" 
+						)
+						v-text-field( 
+							v-if="!!(form.username && form.username.length === 18 && !isNaN(form.username))" 
+							label="Password"
+							v-model="form.password" 
+							required
+							:append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'" 
+							:type="showPassword ? 'text' : 'password'"  
+							@click:append="showPassword = !showPassword" 
+							@keyup.enter="masuk"
+						)
+						v-btn(
+							v-if="!!(form.username && form.username.length === 18 && !isNaN(form.username) && form.password)" 
+							small 
+							outlined 
+							color='primary' 
+							@click='masuk'
+						) hubungkan
+					p(v-if='response') Response: {{ response }}
+					p(v-if="error" style="color:red;")
+						strong Error {{ error.status }}
+						br 
+						| {{ error.data }}
 			v-btn(v-if='!isInternal' small text color='primary') Login Simpus 
 		v-divider
 		v-card-actions
@@ -26,7 +59,20 @@ v-dialog(v-model="userDialog" width="500" v-cloak)
 <script>
 export default {
 	data: () => ({
-		userDialog: false
+		userDialog: false,
+		showPegawai: false,
+		showPassword: false,
+    lazy: false,
+    valid: false,
+    form: {
+      username: null,
+      password: null
+    },
+    rules: {
+      isNaN: v => !isNaN(v) || 'input NIP',
+    },
+    response: false,
+    error: null
 	}),
 	computed: {
 		isPegawai() {
@@ -54,7 +100,21 @@ export default {
 				// .catch((error) => {
 				// 	console.log(error)
 				// })
-		}
+		},
+		async masuk() {
+      if (this.$refs.forms.validate()) {
+        //this.response = JSON.stringify(this.form)
+        try {
+          const res = await this.$axios.post( '/peg', this.form)
+          this.response = res.data
+          this.error = null
+        } catch (e) {
+          this.error = e.response
+          this.response = '—'
+        }
+      }
+    }
+
 	}
 }
 </script>
