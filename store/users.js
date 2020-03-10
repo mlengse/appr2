@@ -11,13 +11,13 @@ export const getters = {
   isInternal: ({ user }) => !!user.simpusUser,
   user: ({user}) => user,
   account: ({ account }) => account,
-  idToken: ({ user }) => user.stsTokenManager.accessToken 
+  idToken: ({ user }) =>  user.stsTokenManager ? user.stsTokenManager.accessToken : user.token
 }
 
 export const actions = {
   setUser({ commit }, user){
     commit('setUser', user)
-    this.$axios.defaults.headers.common['token'] = user.stsTokenManager.accessToken
+    this.$axios.defaults.headers.common['token'] = user.stsTokenManager ? user.stsTokenManager.accessToken : user.token
   },
   async userLogout({ commit }) {
     let firebase = await import('firebase/app')
